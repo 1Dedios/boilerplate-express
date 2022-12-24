@@ -1,5 +1,7 @@
-let express = require('express');
-let app = express();
+// import express from 'express';
+// let app = express();
+
+console.log("Hello World");
 
 
 
@@ -36,4 +38,4 @@ let app = express();
 
 
 
- module.exports = app;
+ export default app;
