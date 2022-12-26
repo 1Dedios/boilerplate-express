@@ -6,14 +6,15 @@ let absolutePath = __dirname + '/views/index.html';
 console.log("Hello World");
 
 app.get('/', (req, res) => {
-    res.sendFile('views/index.html');
+    res.sendFile(absolutePath);
 });
 
 app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/json', (req, res) => {
+    process.env.MESSAGE_STYLE;
     res.json({
-        "message": "Hello json"
+        "message": "HELLO JSON"
     });
 });
 
