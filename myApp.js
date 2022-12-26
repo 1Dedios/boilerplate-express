@@ -1,6 +1,7 @@
 let express = require('express');
 let app = express();
-let absolutePath = __dirname + '/public';
+let absolutePath = __dirname + '/views/index.html';
+let absolutePathTwo = __dirname + '/public/style.css';
 
 
 console.log("Hello World");
@@ -9,7 +10,7 @@ app.get('/', (req, res) => {
     res.sendFile(absolutePath);
 });
 
-app.use(express.static(absolutePath));
+app.use('/', express.static(absolutePathTwo));
 
 module.exports = app;
 
