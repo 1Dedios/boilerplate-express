@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     res.sendFile(absolutePath);
 });
 
-app.use('/', express.static(absolutePathTwo));
+app.use('/public', express.static(absolutePathTwo));
 
 module.exports = app;
 
