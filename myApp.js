@@ -1,4 +1,4 @@
-require('dotenv').config(); // trying to get the dotenv import to work 
+require('dotenv').config();
 let express = require('express');
 let app = express();
 let absolutePath = __dirname + '/views/index.html';
@@ -14,10 +14,10 @@ app.get('/', (req, res) => {
 app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/json', (req, res) => {
-    process.env.MESSAGE_STYLE; // trying to get the 'dotenv' import to work to use the variable in the .env file
-    res.json({
-        "message": "HELLO JSON"
-    });
+    process.env.MESSAGE_STYLE,
+        res.json({
+            "message": "HELLO JSON"
+        });
 });
 
 module.exports = app;
