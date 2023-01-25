@@ -8,7 +8,7 @@ console.log("Hello World");
 app.use((req, res, next) => {
     let string = req.method + " " + res.path + " - " + req.ip;
     console.log(string);
-    next();
+    next('route');
 });
 
 app.use('/public', express.static(__dirname + '/public'));
