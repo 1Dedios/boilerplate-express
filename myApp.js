@@ -5,7 +5,7 @@ let absolutePath = __dirname + '/views/index.html';
 
 console.log("Hello World");
 
-app.use((req, res, next) => {
+app.use('/json', (req, res, next) => {
     let string = req.method + " " + res.path + " - " + req.ip;
     console.log(string);
     next('route');
