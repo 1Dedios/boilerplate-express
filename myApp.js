@@ -4,9 +4,10 @@ let app = express();
 let absolutePath = __dirname + '/views/index.html';
 
 console.log("Hello World");
-app.use(function middleware(req, res, next) {
-    console.log(req.method + "" + res.path + "-" + req.ip),
-        next();
+
+app.use((req, res, next) => {
+    console.log(req.method + " " + res.path + " - " + req.ip);
+    next();
 });
 
 
