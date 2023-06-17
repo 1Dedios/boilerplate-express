@@ -4,9 +4,8 @@ let app = express();
 let absolutePath = __dirname + "/views/index.html";
 
 app.use((req, res, next) => {
-  let string = req.method + " " + req.path + " - " + req.ip;
-  console.log(string);
-
+  //   let string = req.method + " " + req.path + " - " + req.ip;
+  console.log(req.method + " " + req.path + " - " + req.ip);
   next();
 });
 
@@ -28,5 +27,18 @@ app.get("/json", (req, res) => {
     message: "Hello json",
   });
 });
+
+app.get(
+  "now",
+  (req, res, next) => {
+    req.time = new Date().toLocaleTimeString();
+    next();
+  },
+  (req, res) => {
+    return res.send({
+      time: req.time,
+    });
+  }
+);
 
 module.exports = app;
