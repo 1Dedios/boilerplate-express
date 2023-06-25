@@ -3,8 +3,8 @@ let app = express();
 let absolutePath = __dirname + "/views/index.html";
 require("dotenv").config();
 
-app.use((req, res, next) => {
-  console.log(req.method + " " + req.path + " - " + req.ip);
+app.use((request, response, next) => {
+  console.log(request.method + " " + request.path + " - " + request.ip);
   next();
 });
 
