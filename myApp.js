@@ -7,15 +7,17 @@ app.use((request, response, next) => {
   console.log(request.method + " " + request.path + " - " + request.ip);
   next();
 });
-
+// Exercise 1:
 console.log("Hello World");
 
 app.use("/public", express.static(__dirname + "/public"));
 
+// Exercise 2, 3:
 app.get("/", (req, res) => {
   res.sendFile(absolutePath);
 });
 
+// Exercise 5:
 app.get("/json", (req, res) => {
   if (process.env.MESSAGE_STYLE === "uppercase") {
     return res.json({
@@ -27,10 +29,11 @@ app.get("/json", (req, res) => {
   });
 });
 
+// Exercise 8:
 app.get(
-  "now",
+  "/now",
   (req, res, next) => {
-    req.time = new Date().toLocaleTimeString();
+    req.time = new Date();
     next();
   },
   (req, res) => {
