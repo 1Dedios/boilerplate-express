@@ -1,6 +1,7 @@
 let express = require("express");
 let app = express();
 let absolutePath = __dirname + "/views/index.html";
+// using .env file
 require("dotenv").config();
 
 app.use((request, response, next) => {
@@ -17,7 +18,7 @@ app.get("/", (req, res) => {
   res.sendFile(absolutePath);
 });
 
-// Exercise 5:
+// Exercise 5: json response
 app.get("/json", (req, res) => {
   if (process.env.MESSAGE_STYLE === "uppercase") {
     return res.json({
@@ -29,7 +30,7 @@ app.get("/json", (req, res) => {
   });
 });
 
-// Exercise 8:
+// Exercise 8: time server with chained middleware
 app.get(
   "/now",
   (req, res, next) => {
@@ -42,5 +43,11 @@ app.get(
     });
   }
 );
+
+// Exercise 9: route parameterized urls - I added the async keyword
+app.get("/:word/echo", (req, res) => {
+  // req.params.word = "dedios";
+  res.json({ echo: req.params.word });
+});
 
 module.exports = app;
