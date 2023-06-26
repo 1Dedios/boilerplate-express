@@ -1,8 +1,10 @@
 let express = require("express");
 let app = express();
 let absolutePath = __dirname + "/views/index.html";
+let bodyParser = require("body-parser");
 // using .env file
 require("dotenv").config();
+bodyParser.urlencoded({ extended: false });
 
 app.use((request, response, next) => {
   console.log(request.method + " " + request.path + " - " + request.ip);
@@ -49,10 +51,19 @@ app.get("/:word/echo", (req, res) => {
   res.json({ echo: req.params.word });
 });
 
-// Exercise 10: query parameter input from client
+// Exercise 10: query parameter input from client - Exercise 11: Get Query Parameter Input from the Client at /name endpoint
+// IMPORTANT - you can use app.route(path).get(handler).post(handler) to chain different verb handlers on the same path route
 
-app.get("/name", (req, res) => {
-  res.json({ name: req.query.name });
-});
+// BELOW: how it was written solely for Exercise 10
+// app.get("/name", (req, res) => {
+//   res.json({ name: req.query.first + " " + req.query.last });
+// });
+
+app
+  .route("/name")
+  .get((req, res) => {
+    res.json({ name: req.query.first + " " + req.query.last });
+  })
+  .post((req, res) => {});
 
 module.exports = app;
