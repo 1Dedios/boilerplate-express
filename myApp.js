@@ -44,10 +44,15 @@ app.get(
   }
 );
 
-// Exercise 9: route parameterized urls - I added the async keyword
+// Exercise 9: route parameterized urls
 app.get("/:word/echo", (req, res) => {
-  // req.params.word = "dedios";
   res.json({ echo: req.params.word });
+});
+
+// Exercise 10: query parameter input from client
+
+app.get("/name", (req, res) => {
+  res.json({ name: req.query });
 });
 
 module.exports = app;
