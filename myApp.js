@@ -52,7 +52,7 @@ app.get("/:word/echo", (req, res) => {
 // Exercise 10: query parameter input from client
 
 app.get("/name", (req, res) => {
-  res.json({ name: req.query });
+  res.json({ name: req.query.name });
 });
 
 module.exports = app;
