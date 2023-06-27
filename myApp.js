@@ -4,10 +4,13 @@ let absolutePath = __dirname + "/views/index.html";
 let bodyParser = require("body-parser");
 // using .env file
 require("dotenv").config();
-bodyParser.urlencoded({ extended: false });
 
-app.use((request, response, next) => {
-  console.log(request.method + " " + request.path + " - " + request.ip);
+// Exercise 11 - middleware to parse url and extract data from the request body. b/c it's set to false it's using the classic
+// way of parsing the url and body. Which means it only accepts strings and arrays.
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+  console.log(req.method + " " + req.path + " - " + req.ip);
   next();
 });
 // Exercise 1:
@@ -51,7 +54,7 @@ app.get("/:word/echo", (req, res) => {
   res.json({ echo: req.params.word });
 });
 
-// Exercise 10: query parameter input from client - Exercise 11: Get Query Parameter Input from the Client at /name endpoint
+// Exercise 10: query parameter input from client - Exercise 12: Get data from POST requests at "/name" endpoint
 // IMPORTANT - you can use app.route(path).get(handler).post(handler) to chain different verb handlers on the same path route
 
 // BELOW: how it was written solely for Exercise 10
@@ -64,6 +67,8 @@ app
   .get((req, res) => {
     res.json({ name: req.query.first + " " + req.query.last });
   })
-  .post((req, res) => {});
+  .post((req, res) => {
+    res.json({ name: req.body.first + " " + req.body.last });
+  });
 
 module.exports = app;
